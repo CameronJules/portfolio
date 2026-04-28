@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: #fff;
+  color: #000;
+}
+
+/* Post body typography — matches Image 4 design */
+.post-body h1 {
+  display: none; /* title is shown separately */
+}
+
+.post-body h2 {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-body p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+.post-body a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.post-body a:hover {
+  opacity: 0.7;
+}
+
+.post-body img {
+  display: none; /* images shown in carousel, not inline */
+}
+
