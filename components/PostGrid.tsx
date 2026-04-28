@@ -7,7 +7,7 @@ export default function PostGrid({ posts }: { posts: Post[] }) {
       <div className="mb-4 border-b border-black pb-1 inline-block">
         <GridIcon />
       </div>
-      <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-[2px]">
+      <div className="-mx-4 sm:mx-0 grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-[2px]">
         {posts.map((post) => (
           <PostThumb key={post.slug} post={post} />
         ))}

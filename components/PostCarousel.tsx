@@ -18,6 +18,7 @@ export default function PostCarousel({ images }: { images: string[] }) {
     onSelect();
   }, [emblaApi, onSelect]);
 
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
   if (images.length === 0) {
@@ -42,6 +43,18 @@ export default function PostCarousel({ images }: { images: string[] }) {
         </div>
       </div>
 
+      {images.length > 1 && selectedIndex > 0 && (
+        <button
+          onClick={scrollPrev}
+          aria-label="Previous image"
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-white bg-white/80 flex items-center justify-center hover:bg-white transition-colors"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M10 3L5 8l5 5" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      )}
+
       {images.length > 1 && selectedIndex < images.length - 1 && (
         <button
           onClick={scrollNext}
@@ -55,7 +68,7 @@ export default function PostCarousel({ images }: { images: string[] }) {
       )}
 
       {images.length > 1 && (
-        <div className="flex justify-center gap-2 py-3">
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
           {images.map((_, i) => (
             <button
               key={i}

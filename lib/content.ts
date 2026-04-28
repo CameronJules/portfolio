@@ -63,7 +63,7 @@ async function parsePost(filename: string): Promise<Post> {
 let _cache: Post[] | null = null;
 
 export async function getAllPosts(): Promise<Post[]> {
-  if (_cache) return _cache;
+  if (_cache && process.env.NODE_ENV === 'production') return _cache;
   if (!fs.existsSync(postsDir)) return [];
 
   const files = fs.readdirSync(postsDir).filter((f) => f.endsWith('.md'));

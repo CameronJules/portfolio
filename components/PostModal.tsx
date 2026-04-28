@@ -42,7 +42,7 @@ export default function PostModal({ post }: { post: Post }) {
 
       {/* Modal panel */}
       <motion.div
-        className="relative z-10 flex flex-col md:flex-row w-[70%] md:w-full md:max-w-5xl bg-white overflow-y-auto md:overflow-hidden"
+        className="relative z-10 flex flex-col md:flex-row w-[80%] md:w-full md:max-w-5xl bg-white overflow-y-auto md:overflow-hidden"
         style={{ maxHeight: 'min(90vh, 720px)' }}
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
