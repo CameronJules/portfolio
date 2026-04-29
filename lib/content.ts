@@ -53,9 +53,7 @@ async function parsePost(filename: string): Promise<Post> {
     ? `/posts/${slug}/${data.cover}`
     : images[0] || '';
 
-  const cover = coverImage.startsWith('http')
-    ? coverImage
-    : coverImage.replace(/\.(jpg|jpeg|png|gif|webp)$/, '.thumb.webp');
+  const cover = coverImage;
 
   return { slug, title, description, date, cover, images, contentHtml };
 }

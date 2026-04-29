@@ -30,13 +30,13 @@ export default function PostCarousel({ images }: { images: string[] }) {
       <div className="overflow-hidden flex-1" ref={emblaRef}>
         <div className="flex h-full">
           {images.map((src, i) => (
-            <div key={i} className="flex-[0_0_100%] min-w-0 h-full relative">
+            <div key={i} className="flex-[0_0_100%] min-w-0 h-full relative bg-black">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={src}
                 alt=""
                 loading={i === 0 ? 'eager' : 'lazy'}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
           ))}
