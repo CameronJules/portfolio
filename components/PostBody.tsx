@@ -4,11 +4,15 @@ function formatEditorialDate(date: string) {
   const parsed = new Date(date);
   if (Number.isNaN(parsed.getTime())) return date;
 
-  return new Intl.DateTimeFormat('en-GB', {
-    day: '2-digit',
-    month: '2-digit',
-    year: '2-digit',
+  const currentYear = new Date().getFullYear();
+  const postYear = parsed.getFullYear();
+
+  const base = new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
   }).format(parsed);
+
+  return postYear < currentYear ? `${base} ${postYear}` : base;
 }
 
 function stripImages(html: string): string {
@@ -46,35 +50,35 @@ export default function PostBody({
 
   return (
     <div className="h-full overflow-y-auto px-7 py-6 md:px-8 md:py-7">
-      <header className="border-b border-neutral-300 pb-2">
+      <header className="border-b border-neutral-300 pb-4 -mx-7 px-7 md:-mx-8 md:px-8">
         <h1
-          className="text-[11pt] leading-[1.2] text-neutral-900 font-semibold pb-1"
+          className="text-[11pt] leading-[1.2] text-neutral-900 font-semibold"
           style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
         >
           {title}
         </h1>
         {description ? (
           <p
-            className="mt-1 text-[11pt] leading-[1] text-neutral-500 pb-2"
+            className="mt-2 text-[11pt] leading-[1] text-neutral-800"
             style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
           >
             {description}
           </p>
         ) : null}
         <p
-          className="mt-2 text-[10pt] leading-none text-neutral-500"
+          className="mt-2 text-[10pt] leading-none text-neutral-400"
           style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
         >
           {formatEditorialDate(date)}
         </p>
       </header>
       <p
-        className="pt-3 pb-1 text-[9.5pt] text-neutral-400"
+        className="pt-3 pb-0 text-[9.5pt] text-neutral-400"
         style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
       >
         comments
       </p>
-      <div className="pt-2">
+      <div className="pt-0">
         {sections.map((s, i) => (
           <CommentBlock key={i} heading={s.heading} contentHtml={s.contentHtml} />
         ))}
