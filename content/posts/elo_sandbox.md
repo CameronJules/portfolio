@@ -25,6 +25,7 @@ The UI is simple and easy to extend using ShadCN, this creates consistency.
 
 ## Engineering approach
 Lightweight web app (Vite + React). It runs anywhere with minimal overhead.
+
 Everything is a module, scales well and enables fast iteration for companion vibes.
 
 
