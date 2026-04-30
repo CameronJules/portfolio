@@ -45,7 +45,7 @@ export default function PostBody({
         </p>
       </header>
       <div
-        className="post-body pt-5"
+        className="post-body pt-2"
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />
     </div>

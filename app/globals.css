@@ -22,12 +22,16 @@ body {
 
 .post-body h2 {
   margin-top: 1.5rem;
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.35rem;
   color: #7a7a7a;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 0.98rem;
   font-weight: 400;
   line-height: 1.2;
+}
+
+.post-body h2:first-of-type {
+  margin-top: 0.25rem;
 }
 
 .post-body h2:nth-of-type(2) {
@@ -38,19 +42,31 @@ body {
 
 .post-body p {
   margin-bottom: 0.95rem;
-  color: #303030;
+  padding-left: 0.75rem;
+  color: #242424;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 0.94rem;
-  line-height: 1.52;
+  line-height: 1.35;
 }
 
-.post-body ul,
-.post-body ol {
+.post-body ul {
   margin: 0.4rem 0 1rem 1.2rem;
-  color: #303030;
+  padding-left: 0.75rem;
+  color: #242424;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 0.94rem;
-  line-height: 1.52;
+  line-height: 1.35;
+  list-style-type: '□  ';
+}
+
+.post-body ol {
+  margin: 0.4rem 0 1rem 1.2rem;
+  padding-left: 0.75rem;
+  color: #242424;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 0.94rem;
+  line-height: 1.35;
+  list-style-type: decimal;
 }
 
 .post-body li {
