@@ -90,16 +90,18 @@ export default function PostCarousel({ images }: { images: string[] }) {
 
       {images.length > 1 && (
         <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => emblaApi?.scrollTo(i)}
-              aria-label={`Go to image ${i + 1}`}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                i === selectedIndex ? 'bg-white' : 'bg-white/40'
-              }`}
-            />
-          ))}
+          <div className="flex items-center gap-2 bg-black/30 rounded-full px-3 py-1.5">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => emblaApi?.scrollTo(i)}
+                aria-label={`Go to image ${i + 1}`}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  i === selectedIndex ? 'bg-white' : 'bg-white/40'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       )}
     </div>
