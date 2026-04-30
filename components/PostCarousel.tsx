@@ -1,15 +1,26 @@
 'use client';
 
 import useEmblaCarousel from 'embla-carousel-react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+const VIDEO_EXTS = ['.mp4', '.mov', '.webm', '.ogg'];
+function isVideo(src: string) {
+  return VIDEO_EXTS.some((ext) => src.toLowerCase().endsWith(ext));
+}
 
 export default function PostCarousel({ images }: { images: string[] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
+    const next = emblaApi.selectedScrollSnap();
+    // pause any playing video that's no longer visible
+    videoRefs.current.forEach((v, i) => {
+      if (v && i !== next) v.pause();
+    });
+    setSelectedIndex(next);
   }, [emblaApi]);
 
   useEffect(() => {
@@ -31,13 +42,23 @@ export default function PostCarousel({ images }: { images: string[] }) {
         <div className="flex h-full">
           {images.map((src, i) => (
             <div key={i} className="flex-[0_0_100%] min-w-0 h-full relative bg-black">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={src}
-                alt=""
-                loading={i === 0 ? 'eager' : 'lazy'}
-                className="w-full h-full object-contain"
-              />
+              {isVideo(src) ? (
+                <video
+                  ref={(el) => { videoRefs.current[i] = el; }}
+                  src={src}
+                  controls
+                  playsInline
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={src}
+                  alt=""
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  className="w-full h-full object-contain"
+                />
+              )}
             </div>
           ))}
         </div>

@@ -10,12 +10,21 @@ type MdastNode = { type: string; children?: MdastNode[]; url?: string };
 
 const postsDir = path.join(process.cwd(), 'content/posts');
 
+const VIDEO_EXTS = ['.mp4', '.mov', '.webm', '.ogg'];
+
 function extractImages(tree: MdastNode, slug: string): string[] {
   const images: string[] = [];
   function walk(node: MdastNode) {
     if (node.type === 'image' && node.url) {
       const url = node.url.startsWith('http') ? node.url : `/posts/${slug}/${node.url}`;
       images.push(url);
+    }
+    if (node.type === 'link' && node.url) {
+      const isVideo = VIDEO_EXTS.some((ext) => node.url!.toLowerCase().endsWith(ext));
+      if (isVideo) {
+        const url = node.url.startsWith('http') ? node.url : `/posts/${slug}/${node.url}`;
+        images.push(url);
+      }
     }
     if (node.children) {
       for (const child of node.children) walk(child);
