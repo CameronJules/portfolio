@@ -11,7 +11,7 @@ export default function PostPage({ post }: { post: Post }) {
           ← Back
         </Link>
         <div className="flex flex-col gap-8 md:flex-row md:items-start" style={{ minHeight: '70vh' }}>
-          <div className="w-full bg-black aspect-[4/5] flex-shrink-0 md:h-[70vh] md:w-auto md:aspect-[3/4]">
+          <div className="w-full bg-black aspect-[3/4] flex-shrink-0 md:h-[70vh] md:w-auto md:aspect-[3/4]">
             <PostCarousel images={post.images} />
           </div>
           <div className="md:h-[70vh] md:w-auto md:flex-none md:aspect-[5/8]">

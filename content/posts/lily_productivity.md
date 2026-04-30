@@ -1,6 +1,6 @@
 ---
 title: Lily Productivity
-description: The most fun ToDo App
+description: A gamified todo app with personality (Video demo at the end)
 date: 2026-02-10
 ---
 
@@ -25,7 +25,6 @@ Server for AI chats built with node.js
 
 
 ![Cover image](cover_image.png)
-![App icon](app_icon.png)
 ![Home screen](home_screen.png)
 ![Mobile poster](mobile_poster.png)
 ![Shop](shop.png)

@@ -37,18 +37,18 @@ export default function PostCarousel({ images }: { images: string[] }) {
   }
 
   return (
-    <div className="relative w-full h-full flex flex-col">
-      <div className="overflow-hidden flex-1" ref={emblaRef}>
+    <div className="relative w-full h-full overflow-hidden">
+      <div className="h-full overflow-hidden" ref={emblaRef}>
         <div className="flex h-full">
           {images.map((src, i) => (
-            <div key={i} className="flex-[0_0_100%] min-w-0 h-full relative bg-black">
+            <div key={i} className="relative h-full min-w-0 flex-[0_0_100%] overflow-hidden bg-black">
               {isVideo(src) ? (
                 <video
                   ref={(el) => { videoRefs.current[i] = el; }}
                   src={src}
                   controls
                   playsInline
-                  className="w-full h-full object-contain"
+                  className="absolute inset-0 h-full w-full object-contain"
                 />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -56,7 +56,7 @@ export default function PostCarousel({ images }: { images: string[] }) {
                   src={src}
                   alt=""
                   loading={i === 0 ? 'eager' : 'lazy'}
-                  className="w-full h-full object-contain"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
               )}
             </div>

@@ -51,7 +51,7 @@ export default function PostModal({ post }: { post: Post }) {
         exit={{ opacity: 0, scale: 0.97 }}
         transition={{ duration: 0.18 }}
       >
-        <div className="w-full aspect-square bg-black flex-shrink-0 shadow-[6px_0_18px_-14px_rgba(0,0,0,0.15)] md:h-full md:w-auto md:aspect-[3/4]">
+        <div className="w-full aspect-[3/4] bg-black flex-shrink-0 shadow-[6px_0_18px_-14px_rgba(0,0,0,0.15)] md:h-full md:w-auto md:aspect-[3/4]">
           <PostCarousel images={post.images} />
         </div>
         <div className="md:h-full md:w-auto md:flex-none md:aspect-[2/3] md:overflow-y-auto">

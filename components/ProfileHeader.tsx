@@ -34,8 +34,8 @@ export default function ProfileHeader() {
         </button>
       </div>
       <p className="text-base text-black max-w-lg leading-snug">
-        I want to put a description of interests goals, as statement to capture attention.
-        The lead of a print direct response ad. Not stretched long. Not too tight.
+        I enjoy blending software & design to create new and unique experiences.
+        Here's an Instagram style collection of my work.
       </p>
 
       <AnimatePresence>
