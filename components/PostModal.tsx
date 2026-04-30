@@ -42,18 +42,25 @@ export default function PostModal({ post }: { post: Post }) {
 
       {/* Modal panel */}
       <motion.div
-        className="relative z-10 flex flex-col md:flex-row w-[80%] md:w-full md:max-w-5xl bg-white overflow-y-auto md:overflow-hidden"
-        style={{ maxHeight: 'min(90vh, 720px)' }}
+        className="relative z-10 flex bg-white
+          w-[84vw] max-h-[94vh] flex-col overflow-y-auto
+          md:h-[min(84vh,64vw)] md:max-h-none md:w-auto md:flex-row md:overflow-hidden
+          lg:h-[min(90vh,67vw)]"
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.97 }}
         transition={{ duration: 0.18 }}
       >
-        <div className="w-full aspect-square md:aspect-auto md:w-[55%] bg-black flex-shrink-0 md:h-auto">
+        <div className="w-full aspect-square bg-black flex-shrink-0 shadow-[6px_0_18px_-14px_rgba(0,0,0,0.15)] md:h-full md:w-auto md:aspect-[3/4]">
           <PostCarousel images={post.images} />
         </div>
-        <div className="flex-1 md:overflow-y-auto">
-          <PostBody title={post.title} contentHtml={post.contentHtml} />
+        <div className="md:h-full md:w-auto md:flex-none md:aspect-[2/3] md:overflow-y-auto">
+          <PostBody
+            title={post.title}
+            description={post.description}
+            date={post.date}
+            contentHtml={post.contentHtml}
+          />
         </div>
       </motion.div>
     </div>

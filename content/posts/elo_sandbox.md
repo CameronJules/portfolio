@@ -1,6 +1,6 @@
 ---
 title: Elo Sandbox
-description: Web tool that lets you give state controlled Rive animations to AI models
+description: Create robot companion faces with real-time emotion & face tracking.
 date: 2026-04-29
 ---
 
