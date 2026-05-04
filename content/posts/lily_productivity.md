@@ -24,7 +24,7 @@ IOS first, coded in swift.
 Server for AI chats built with node.js
 
 
-![Cover image](cover_image.png)
+![Cover image](cover_image_new.png)
 ![Home screen](home_screen.png)
 ![Mobile poster](mobile_poster.png)
 ![Shop](shop.png)
