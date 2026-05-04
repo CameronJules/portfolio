@@ -33,7 +33,8 @@ I write my specs in md files in Obsidian.
 I give my agents access to the folders or condense my
 long specs into token optimsed prompts.
 
-![Cover](cover.png)
+![Cover](cover-blue.png)
+![Image 0](cover.png)
 ![Image 1](img1.png)
 ![Image 2](img2.png)
 ![Image 3](img3.png)

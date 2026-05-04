@@ -6,6 +6,7 @@ import { Copy, MoreHorizCircle, OpenNewWindow } from 'iconoir-react';
 
 const EMAIL = 'cpjules@gmail.com';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/cameron-jules/';
+const GITHUB_URL = 'https://github.com/cameronjules';
 const X_URL = 'https://x.com/cpierrej';
 const CALENDLY_URL = 'https://calendly.com/cpjules';
 
@@ -86,6 +87,16 @@ export default function ProfileHeader() {
                 onClick={() => setOpen(false)}
               >
                 LinkedIn
+                <OpenNewWindow width={15} height={15} className="text-black/35 flex-shrink-0" strokeWidth={1.75} />
+              </a>
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-4 text-[15px] flex items-center justify-center gap-2 transition-colors active:bg-black/5 hover:bg-black/5"
+                onClick={() => setOpen(false)}
+              >
+                GitHub
                 <OpenNewWindow width={15} height={15} className="text-black/35 flex-shrink-0" strokeWidth={1.75} />
               </a>
               <a
