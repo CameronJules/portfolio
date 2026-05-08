@@ -12,6 +12,24 @@ const postsDir = path.join(process.cwd(), 'content/posts');
 
 const VIDEO_EXTS = ['.mp4', '.mov', '.webm', '.ogg'];
 
+function normalizeDate(value: unknown): string {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString().slice(0, 10);
+  }
+
+  if (typeof value === 'string') {
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? value : parsed.toISOString().slice(0, 10);
+  }
+
+  return '1970-01-01';
+}
+
+function getPostTime(post: Post): number {
+  const time = new Date(post.date).getTime();
+  return Number.isNaN(time) ? 0 : time;
+}
+
 function extractImages(tree: MdastNode, slug: string): string[] {
   const images: string[] = [];
   function walk(node: MdastNode) {
@@ -56,7 +74,7 @@ async function parsePost(filename: string): Promise<Post> {
   const titleMatch = content.match(/^#\s+(.+)$/m);
   const title = data.title || titleMatch?.[1] || slug;
   const description = data.description || '';
-  const date = data.date ? String(data.date) : '1970-01-01';
+  const date = normalizeDate(data.date);
 
   const coverImage = data.cover
     ? `/posts/${slug}/${data.cover}`
@@ -75,7 +93,7 @@ export async function getAllPosts(): Promise<Post[]> {
 
   const files = fs.readdirSync(postsDir).filter((f) => f.endsWith('.md'));
   const posts = await Promise.all(files.map(parsePost));
-  posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  posts.sort((a, b) => getPostTime(b) - getPostTime(a) || a.slug.localeCompare(b.slug));
   _cache = posts;
   return posts;
 }
