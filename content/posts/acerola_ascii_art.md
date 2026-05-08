@@ -29,6 +29,6 @@ Check it out on youtube ->  [video](https://www.youtube.com/watch?v=gg40RWiaHRY)
 Devil may cryy art I found on pinterest ->  [post](https://uk.pinterest.com/pin/787004103674521879/)
 
 
-![Cover image](acerola-cover-light.png)
+![Cover image](ascii-cover.png)
 ![Demo Video](ascii-acerola-vid.mp4)
 
