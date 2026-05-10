@@ -2,7 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Post } from '@/lib/types';
 
-export default function PostThumb({ post }: { post: Post }) {
+export default function PostThumb({
+  post,
+  onImageReady,
+}: {
+  post: Post;
+  onImageReady?: () => void;
+}) {
   return (
     <Link href={`/${post.slug}`} className="block aspect-[3/4] overflow-hidden bg-black relative group">
       {post.cover ? (
@@ -10,8 +16,11 @@ export default function PostThumb({ post }: { post: Post }) {
           src={post.cover}
           alt={post.title}
           fill
+          loading="eager"
           sizes="(max-width: 768px) 33vw, (max-width: 1280px) 25vw, 20vw"
           className="object-cover group-hover:opacity-90 transition-opacity"
+          onLoad={onImageReady}
+          onError={onImageReady}
         />
       ) : (
         <div className="w-full h-full bg-black" />
