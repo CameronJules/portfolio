@@ -3,15 +3,16 @@
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { motion } from 'framer-motion';
 import { Maximize, X, ZoomIn } from 'lucide-react';
-import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 type PostModalControlsProps = {
+  selectedTool: Tool;
+  onToolChange: (tool: Tool) => void;
   onClose: () => void;
   className?: string;
 };
 
-type Tool = 'zoom' | 'maximize';
+export type Tool = 'zoom' | 'maximize';
 
 const TOOLS: Record<Tool, { x: number; width: number }> = {
   zoom: { x: 0, width: 48 },
@@ -25,14 +26,13 @@ const ACTIVE_PILL_TRANSITION = {
   mass: 0.8,
 } as const;
 
-export default function PostModalControls({ onClose, className }: PostModalControlsProps) {
-  const [selectedTool, setSelectedTool] = useState<Tool>('maximize');
+export default function PostModalControls({ selectedTool, onToolChange, onClose, className }: PostModalControlsProps) {
   const activeTool = TOOLS[selectedTool];
 
   function selectTool(value: string) {
     if (!value || value === selectedTool) return;
 
-    setSelectedTool(value as Tool);
+    onToolChange(value as Tool);
   }
 
   return (

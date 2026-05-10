@@ -2,13 +2,14 @@
 
 import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import LiquidMagnifier from './LiquidMagnifier';
 
 const VIDEO_EXTS = ['.mp4', '.mov', '.webm', '.ogg'];
 function isVideo(src: string) {
   return VIDEO_EXTS.some((ext) => src.toLowerCase().endsWith(ext));
 }
 
-export default function PostCarousel({ images }: { images: string[] }) {
+export default function PostCarousel({ images, magnifierEnabled = false }: { images: string[]; magnifierEnabled?: boolean }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -63,6 +64,10 @@ export default function PostCarousel({ images }: { images: string[] }) {
           ))}
         </div>
       </div>
+
+      {magnifierEnabled && !isVideo(images[selectedIndex]) && (
+        <LiquidMagnifier src={images[selectedIndex]} />
+      )}
 
       {images.length > 1 && selectedIndex > 0 && (
         <button

@@ -1,15 +1,16 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { Post } from '@/lib/types';
 import PostCarousel from './PostCarousel';
 import PostBody from './PostBody';
-import PostModalControls from './PostModalControls';
+import PostModalControls, { type Tool } from './PostModalControls';
 
 export default function PostModal({ post }: { post: Post }) {
   const router = useRouter();
+  const [selectedTool, setSelectedTool] = useState<Tool>('maximize');
 
   const close = () => router.back();
 
@@ -31,6 +32,8 @@ export default function PostModal({ post }: { post: Post }) {
       />
 
       <PostModalControls
+        selectedTool={selectedTool}
+        onToolChange={setSelectedTool}
         onClose={close}
         className="absolute right-4 top-4 z-20 sm:right-6 sm:top-5"
       />
@@ -47,7 +50,7 @@ export default function PostModal({ post }: { post: Post }) {
         transition={{ duration: 0.18 }}
       >
         <div className="w-full aspect-[3/4] bg-black flex-shrink-0 shadow-[6px_0_18px_-14px_rgba(0,0,0,0.15)] md:h-full md:w-auto md:aspect-[3/4]">
-          <PostCarousel images={post.images} />
+          <PostCarousel images={post.images} magnifierEnabled={selectedTool === 'zoom'} />
         </div>
         <div className="md:h-full md:w-auto md:flex-none md:aspect-[2/3] md:overflow-y-auto">
           <PostBody
