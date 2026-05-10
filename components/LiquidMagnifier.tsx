@@ -284,7 +284,7 @@ export default function LiquidMagnifier({ src }: LiquidMagnifierProps) {
           aria-valuemax={MAX_ZOOM}
           aria-valuemin={1}
           aria-valuenow={Number(lens.zoom.toFixed(2))}
-          className="absolute left-[-22px] top-1/2 z-20 flex w-5 -translate-y-1/2 cursor-ns-resize touch-none items-center justify-center"
+          className="absolute right-[-22px] top-1/2 z-20 flex w-5 -translate-y-1/2 cursor-ns-resize touch-none items-center justify-center"
           style={{ height: lens.size * 0.85 }}
           role="slider"
           tabIndex={0}

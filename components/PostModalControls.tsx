@@ -91,9 +91,9 @@ export default function PostModalControls({ selectedTool, onToolChange, onClose,
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="flex size-10 items-center justify-center rounded-full border border-white bg-white/80 text-black shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-md transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/70"
+        className="flex size-9 items-center justify-center rounded-full border border-white bg-white/80 text-black shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-md transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/70"
       >
-        <X aria-hidden="true" className="size-5" strokeWidth={2} />
+        <X aria-hidden="true" className="size-[18px]" strokeWidth={2} />
       </button>
     </div>
   );
