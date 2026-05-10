@@ -41,18 +41,18 @@ export default function PostModal({ post }: { post: Post }) {
       {/* Modal panel */}
       <motion.div
         className="relative z-10 flex bg-white
-          mt-7 w-[84vw] max-h-[87vh] flex-col overflow-y-auto
-          md:mt-0 md:h-[min(84vh,64vw)] md:max-h-none md:w-auto md:flex-row md:overflow-hidden
+          mt-7 w-[84vw] max-h-[87vh] flex-col overflow-visible
+          md:mt-0 md:h-[min(84vh,64vw)] md:max-h-none md:w-auto md:flex-row md:overflow-visible
           lg:h-[min(90vh,67vw)]"
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.97 }}
         transition={{ duration: 0.18 }}
       >
-        <div className="w-full aspect-[3/4] bg-black flex-shrink-0 shadow-[6px_0_18px_-14px_rgba(0,0,0,0.15)] md:h-full md:w-auto md:aspect-[3/4]">
+        <div className="relative z-20 w-full aspect-[3/4] overflow-visible bg-black flex-shrink-0 shadow-[6px_0_18px_-14px_rgba(0,0,0,0.15)] md:h-full md:w-auto md:aspect-[3/4]">
           <PostCarousel images={post.images} magnifierEnabled={selectedTool === 'zoom'} />
         </div>
-        <div className="md:h-full md:w-auto md:flex-none md:aspect-[2/3] md:overflow-y-auto">
+        <div className="relative z-10 max-h-[87vh] overflow-y-auto md:h-full md:w-auto md:flex-none md:aspect-[2/3]">
           <PostBody
             title={post.title}
             description={post.description}

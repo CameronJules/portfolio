@@ -44,6 +44,10 @@ type DragState =
 const MIN_SIZE = 96;
 const DEFAULT_ZOOM = 1.8;
 const MAX_ZOOM = 3;
+const EDGE_BLEED = 32;
+const LENS_RADIUS = 18;
+const RESIZE_HANDLE_OFFSET = 10;
+const RESIZE_HANDLE_SIZE = 15;
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
@@ -88,8 +92,8 @@ export default function LiquidMagnifier({ src }: LiquidMagnifierProps) {
 
         return {
           ...current,
-          x: clamp(current.x, 0, nextViewport.width - size),
-          y: clamp(current.y, 0, nextViewport.height - size),
+          x: clamp(current.x, -EDGE_BLEED, nextViewport.width - size + EDGE_BLEED),
+          y: clamp(current.y, -EDGE_BLEED, nextViewport.height - size + EDGE_BLEED),
           size,
         };
       });
@@ -154,15 +158,15 @@ export default function LiquidMagnifier({ src }: LiquidMagnifierProps) {
 
         return {
           ...current,
-          x: clamp(nextX, 0, viewport.width - current.size),
-          y: clamp(nextY, 0, viewport.height - current.size),
+          x: clamp(nextX, -EDGE_BLEED, viewport.width - current.size + EDGE_BLEED),
+          y: clamp(nextY, -EDGE_BLEED, viewport.height - current.size + EDGE_BLEED),
         };
       });
       return;
     }
 
     if (drag.type === 'resize') {
-      const maxSize = Math.min(viewport.width - lens.x, viewport.height - lens.y);
+      const maxSize = Math.min(viewport.width + EDGE_BLEED - lens.x, viewport.height + EDGE_BLEED - lens.y);
       const nextSize = drag.startSize + event.clientX - drag.startClientX;
 
       setLens((current) => {
@@ -248,9 +252,9 @@ export default function LiquidMagnifier({ src }: LiquidMagnifierProps) {
   const backgroundY = lens.size / 2 - (lensCenterY - imageOffsetY) * lens.zoom;
 
   return (
-    <div ref={viewportRef} className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
+    <div ref={viewportRef} className="pointer-events-none absolute inset-0 z-50 overflow-visible">
       <div
-        className="liquid-magnifier pointer-events-auto absolute cursor-grab touch-none overflow-hidden rounded-[18px] active:cursor-grabbing"
+        className="liquid-magnifier pointer-events-auto absolute cursor-grab touch-none overflow-visible rounded-[18px] active:cursor-grabbing"
         style={{
           left: lens.x,
           top: lens.y,
@@ -280,7 +284,8 @@ export default function LiquidMagnifier({ src }: LiquidMagnifierProps) {
           aria-valuemax={MAX_ZOOM}
           aria-valuemin={1}
           aria-valuenow={Number(lens.zoom.toFixed(2))}
-          className="absolute bottom-7 left-4 top-7 z-20 flex w-5 cursor-ns-resize touch-none items-center justify-center"
+          className="absolute left-[-22px] top-1/2 z-20 flex w-5 -translate-y-1/2 cursor-ns-resize touch-none items-center justify-center"
+          style={{ height: lens.size * 0.85 }}
           role="slider"
           tabIndex={0}
           onPointerDown={startZoom}
@@ -296,13 +301,28 @@ export default function LiquidMagnifier({ src }: LiquidMagnifierProps) {
         <button
           type="button"
           aria-label="Resize magnifier"
-          className="absolute bottom-0 right-0 z-20 size-12 cursor-nwse-resize touch-none"
+          className="absolute z-20 cursor-nwse-resize touch-none p-[5px]"
+          style={{
+            bottom: -RESIZE_HANDLE_OFFSET,
+            right: -RESIZE_HANDLE_OFFSET,
+            width: RESIZE_HANDLE_SIZE + 12,
+            height: RESIZE_HANDLE_SIZE + 12,
+          }}
           onPointerDown={startResize}
           onPointerMove={moveLens}
           onPointerUp={finishDrag}
           onPointerCancel={finishDrag}
         >
-          <span className="absolute bottom-3 right-3 h-6 w-6 rounded-br-[14px] border-b-4 border-r-4 border-white/55" />
+          <svg className="block h-full w-full overflow-visible" viewBox="0 0 42 42" aria-hidden="true">
+            <path
+              d="M 10.75 39 H 12 C 26.9 39 39 26.9 39 12 V 10.75"
+              fill="none"
+              stroke="rgba(255,255,255,0.45)"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="5"
+            />
+          </svg>
         </button>
       </div>
     </div>

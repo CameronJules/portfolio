@@ -38,7 +38,7 @@ export default function PostCarousel({ images, magnifierEnabled = false }: { ima
   }
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="relative w-full h-full overflow-visible">
       <div className="h-full overflow-hidden" ref={emblaRef}>
         <div className="flex h-full">
           {images.map((src, i) => (
