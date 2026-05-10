@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import type { Post } from '@/lib/types';
 import PostCarousel from './PostCarousel';
 import PostBody from './PostBody';
+import PostModalControls from './PostModalControls';
 
 export default function PostModal({ post }: { post: Post }) {
   const router = useRouter();
@@ -29,16 +30,10 @@ export default function PostModal({ post }: { post: Post }) {
         onClick={close}
       />
 
-      {/* Close button — top-right of screen, outside the modal panel */}
-      <button
-        onClick={close}
-        aria-label="Close"
-        className="absolute top-5 right-6 z-20 text-black hover:opacity-60 transition-opacity"
-      >
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <path d="M20 2L2 20M2 2l18 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      </button>
+      <PostModalControls
+        onClose={close}
+        className="absolute right-4 top-4 z-20 sm:right-6 sm:top-5"
+      />
 
       {/* Modal panel */}
       <motion.div
