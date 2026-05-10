@@ -22,21 +22,20 @@ export default function ProfileHeader() {
 
   return (
     <div className="pt-16 pb-12">
-      <div className="flex items-center gap-8 mb-4">
-        <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-none">
+      <div className="flex items-center gap-4 sm:gap-8 mb-2">
+        <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-6xl font-medium tracking-tight leading-none whitespace-nowrap">
           Cameron Jules
         </h1>
         <button
           aria-label="More options"
-          className="flex-shrink-0 mt-4 hover:opacity-60 transition-opacity"
+          className="ml-auto sm:ml-0 flex-shrink-0 hover:opacity-60 transition-opacity"
           onClick={() => setOpen(true)}
         >
           <MoreHorizCircle width={28} height={28} strokeWidth={1.5} />
         </button>
       </div>
-      <p className="text-base text-black max-w-lg leading-snug">
-        I enjoy blending software & design to create new and unique experiences.
-        Here's an Instagram style collection of my work.
+      <p className="text-sm sm:text-base text-black/55 max-w-lg leading-snug">
+        I enjoy blending software & design
       </p>
 
       <AnimatePresence>
